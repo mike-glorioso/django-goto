@@ -10,11 +10,11 @@ def goto(request: HttpRequest, destination: str) -> HttpResponse:
         raise Http404 from None
     return HttpResponseRedirect(reverse(url_name))
 
+
 def register_robots():
-    return [
-        ("User-agent: *", "Disallow: /goto/")
-    ]
+    return [("User-agent: *", "Disallow: /goto/")]
+
 
 urlpatterns = [
-        path("goto/<str:destination>/", goto, name="goto"),
+    path("goto/<str:destination>/", goto, name="goto"),
 ]
