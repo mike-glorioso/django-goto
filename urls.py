@@ -13,8 +13,8 @@ def goto(request: HttpRequest, destination: str) -> HttpResponse:
     return HttpResponseRedirect(reverse(url_name))
 
 
-def register_robots(*, base_url: str = "", user_agent: str = "*"):
-    return [(f"User-agent: {user_agent}", f"Disallow: /{base_url}")]
+def register_robots(*, base_url: str = "/", user_agent: str = "*"):
+    return [(f"User-agent: {user_agent}", f"Disallow: {base_url}")]
 
 
 urlpatterns = [
