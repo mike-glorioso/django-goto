@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.http import Http404, HttpRequest, HttpResponse, HttpResponseRedirect
 from django.urls import path, reverse
+from django_robots_registry import RobotSpec, RobotSpecProvider
 
 app_name = "goto"
 
@@ -13,8 +14,14 @@ def goto(request: HttpRequest, destination: str) -> HttpResponse:
     return HttpResponseRedirect(reverse(url_name))
 
 
-def register_robots(*, base_url: str = "/", user_agent: str = "*"):
-    return [(f"User-agent: {user_agent}", f"Disallow: {base_url}")]
+class GotoRobots(RobotSpecProvider):
+    def __init__(self, *, base_url: str = "/goto", user_agent: str = "*") -> None:
+        self.base_url = base_url
+        self.user_agent = user_agent
+        super().__init__()
+
+    def __call__(self) -> RobotSpec:
+        return RobotSpec(user_agent=self.user_agent, instruction=f"Disallow: {self.base_url}")
 
 
 urlpatterns = [
