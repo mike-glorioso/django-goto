@@ -1,0 +1,41 @@
+[project]
+name = "django_goto"
+version = "0.1.0"
+description = "Short, settings-driven redirect shortcuts for Django (/goto/<key>/)."
+readme = "README.md"
+requires-python = ">=3.14.4"
+license = {text = "BSD-3-Clause"}
+authors = [{name = "Michael Glorioso", email = "michael.glorioso@glotronic.net"}]
+dependencies = [
+    "Django>=6.1.1",
+    "django_robots_registry @ git+https://github.com/mike-glorioso/django-robots-registry.git@main",
+]
+classifiers = [
+    "License :: OSI Approved :: BSD License",
+    "Framework :: Django",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Typing :: Typed",
+]
+
+[project.urls]
+Homepage = "https://github.com/mike-glorioso/django-goto"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.pyright]
+typeCheckingMode = "strict"
+venvPath = "."
+venv = ".venv"
+
+[tool.ruff]
+line-length = 100
+target-version = "py314"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "DJ"]
+
+[tool.setuptools.package-data]
+django_goto = ["py.typed"]

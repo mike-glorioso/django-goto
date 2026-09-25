@@ -1,0 +1,2 @@
+Django>=6.1.1
+django_robots_registry @ git+https://github.com/mike-glorioso/django-robots-registry.git@main
