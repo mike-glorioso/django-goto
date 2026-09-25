@@ -15,13 +15,13 @@ def goto(request: HttpRequest, destination: str) -> HttpResponse:
 
 
 class GotoRobots(RobotSpecProvider):
-    def __init__(self, *, base_url: str = "/goto", user_agent: str = "*") -> None:
+    def __init__(self, *, base_url: str = "goto", user_agent: str = "*") -> None:
         self.base_url = base_url
         self.user_agent = user_agent
         super().__init__()
 
     def __call__(self) -> RobotSpec:
-        return RobotSpec(user_agent=self.user_agent, instruction=f"Disallow: {self.base_url}")
+        return RobotSpec(user_agent=self.user_agent, instruction=f"Disallow: /{self.base_url}")
 
 
 urlpatterns = [
